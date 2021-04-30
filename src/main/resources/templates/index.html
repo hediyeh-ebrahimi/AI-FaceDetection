@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>پردازش تصاویر</title>
+    <link th:href="@{/style/main.css}" rel="stylesheet" />
+</head>
+<body style="direction: rtl">
+
+<div class="card">
+    <div class="card-header">
+        تصاویر
+    </div>
+    <div class="card-body">
+        <div th:if="${success}" class="alert alert-success" th:text="${success}"></div>
+        <div th:if="${error}"  class="alert alert-danger" th:text="${error}"></div>
+        <form method="POST" enctype="multipart/form-data" action="/uploadArchiveImages">
+            <table>
+                <tr>
+                    <td>تصاویر آپلود شده:</td>
+                    <td><input type="file" name="file"/></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="بارگذاری" class="btn btn-primary"/></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+
+
+<div class="card">
+    <div class="card-header">
+        تصویر دلخواه
+    </div>
+    <div class="card-body">
+        <div th:if="${success_chosen}" class="alert alert-success" th:text="${success_chosen}"></div>
+        <div th:if="${error_chosen}"  class="alert alert-danger" th:text="${error_chosen}"></div>
+        <form method="POST" enctype="multipart/form-data" action="/upload">
+            <table>
+                <tr>
+                    <td>تصاویر آپلود شده انتخابی:</td>
+                    <td><input type="file" name="file"/></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="بارگذاری" class="btn btn-primary"/></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+<div class="card">
+    <br>
+    <h1>تصاویر یافت شده</h1>
+    <img th:each="x : ${images}" th:src="@{${x.address}}" class="img-thumbnail" alt="@{${x.originalName}}" width="200" height="200"/>
+
+</div>
+
+</body>
+</html>
